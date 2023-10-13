@@ -7,6 +7,7 @@ import (
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/go-zoox/core-utils/fmt"
+	"github.com/go-zoox/core-utils/regexp"
 	"github.com/go-zoox/fs"
 	"github.com/go-zoox/headers"
 	"github.com/go-zoox/zoox"
@@ -24,6 +25,11 @@ type Config struct {
 }
 
 func server(cfg *Config) error {
+	// remove prefix slash
+	if matched := regexp.Match("^/", cfg.Directory); matched {
+		cfg.Directory = cfg.Directory[1:]
+	}
+
 	app := defaults.Default()
 
 	client, err := oss.New(
