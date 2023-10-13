@@ -40,9 +40,7 @@ func server(cfg *Config) error {
 		return err
 	}
 
-	// @TODO
-	// app.Get("/(.*)", func(ctx *zoox.Context) {
-	app.Use(func(ctx *zoox.Context) {
+	app.Get("/*", func(ctx *zoox.Context) {
 		if ctx.Path == "" {
 			ctx.Error(http.StatusNotFound, "Not Found")
 			return
