@@ -15,21 +15,21 @@ RUN CGO_ENABLED=0 \
   go build \
   -trimpath \
   -ldflags '-w -s -buildid=' \
-  -v -o alioss-cdn .
+  -v -o storage ./cmd/storage
 
 # Server
 FROM whatwewant/alpine:v3.17-1
 
 LABEL MAINTAINER="Zero<tobewhatwewant@gmail.com>"
 
-LABEL org.opencontainers.image.source="https://github.com/go-idp/oss"
+LABEL org.opencontainers.image.source="https://github.com/go-idp/storage"
 
 ARG VERSION=latest
 
 ENV VERSION=${VERSION}
 
-COPY --from=builder /build/alioss-cdn /bin
+COPY --from=builder /build/storage /bin
 
-RUN alioss-cdn --version
+RUN storage --version
 
-CMD alioss-cdn server
+CMD storage server

@@ -1,17 +1,17 @@
 package main
 
 import (
-	"github.com/go-idp/oss"
-	"github.com/go-idp/oss/config"
-	"github.com/go-idp/oss/server"
+	"github.com/go-idp/storage"
+	"github.com/go-idp/storage/config"
+	"github.com/go-idp/storage/server"
 	"github.com/go-zoox/cli"
 )
 
 func main() {
 	app := cli.NewSingleProgram(&cli.SingleProgramConfig{
-		Name:    "alioss-cdn",
-		Usage:   "Ali OSS CDN Server",
-		Version: oss.Version,
+		Name:    "storage",
+		Usage:   "Storage Service for IDP",
+		Version: storage.Version,
 		Flags: []cli.Flag{
 			&cli.IntFlag{
 				Name:    "port",

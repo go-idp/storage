@@ -6,9 +6,11 @@ import (
 	"time"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"github.com/go-idp/oss/config"
+	"github.com/go-idp/storage"
+	"github.com/go-idp/storage/config"
 	"github.com/go-zoox/core-utils/fmt"
 	"github.com/go-zoox/core-utils/regexp"
+	"github.com/go-zoox/datetime"
 	"github.com/go-zoox/fs"
 	"github.com/go-zoox/headers"
 	"github.com/go-zoox/zoox"
@@ -16,6 +18,8 @@ import (
 )
 
 func Run(cfg *config.Config) error {
+	runningAt := datetime.Now().Format("YYYY-MM-DD HH:mm:ss")
+
 	// remove prefix slash
 	if matched := regexp.Match("^/", cfg.Directory); matched {
 		cfg.Directory = cfg.Directory[1:]
@@ -66,6 +70,14 @@ func Run(cfg *config.Config) error {
 		if _, err := io.Copy(ctx.Writer, reader); err != nil {
 			ctx.Logger.Errorf("failed to send file reader: %s (err: %s)", fullpath, err)
 		}
+	})
+
+	app.Get("/", func(ctx *zoox.Context) {
+		ctx.JSON(200, zoox.H{
+			"name":       "storage service for idp",
+			"version":    storage.Version,
+			"running_at": runningAt,
+		})
 	})
 
 	return app.Run(fmt.Sprintf(":%d", cfg.Port))

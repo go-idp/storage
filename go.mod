@@ -1,4 +1,4 @@
-module github.com/go-idp/oss
+module github.com/go-idp/storage
 
 go 1.22.1
 
@@ -6,6 +6,7 @@ require (
 	github.com/aliyun/aliyun-oss-go-sdk v2.2.9+incompatible
 	github.com/go-zoox/cli v1.4.0
 	github.com/go-zoox/core-utils v1.4.10
+	github.com/go-zoox/datetime v1.3.1
 	github.com/go-zoox/fs v1.3.15
 	github.com/go-zoox/headers v1.0.8
 	github.com/go-zoox/zoox v1.15.8
@@ -43,7 +44,6 @@ require (
 	github.com/go-zoox/counter v1.2.1 // indirect
 	github.com/go-zoox/cron v1.2.2 // indirect
 	github.com/go-zoox/crypto v1.1.8 // indirect
-	github.com/go-zoox/datetime v1.3.1 // indirect
 	github.com/go-zoox/debug v1.0.5 // indirect
 	github.com/go-zoox/dotenv v1.3.0 // indirect
 	github.com/go-zoox/encoding v1.2.1 // indirect
