@@ -1,6 +1,9 @@
 package main
 
 import (
+	"github.com/go-idp/oss"
+	"github.com/go-idp/oss/config"
+	"github.com/go-idp/oss/server"
 	"github.com/go-zoox/cli"
 )
 
@@ -8,7 +11,7 @@ func main() {
 	app := cli.NewSingleProgram(&cli.SingleProgramConfig{
 		Name:    "alioss-cdn",
 		Usage:   "Ali OSS CDN Server",
-		Version: Version,
+		Version: oss.Version,
 		Flags: []cli.Flag{
 			&cli.IntFlag{
 				Name:    "port",
@@ -50,7 +53,7 @@ func main() {
 	})
 
 	app.Command(func(ctx *cli.Context) (err error) {
-		return server(&Config{
+		return server.Run(&config.Config{
 			Port:            ctx.Int("port"),
 			AccessKeyID:     ctx.String("access-key-id"),
 			AccessKeySecret: ctx.String("access-key-secret"),

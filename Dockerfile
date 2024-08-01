@@ -1,5 +1,5 @@
 # Builder
-FROM whatwewant/builder-go:v1.20-1 as builder
+FROM whatwewant/builder-go:v1.22-1 as builder
 
 WORKDIR /build
 
@@ -22,7 +22,7 @@ FROM whatwewant/alpine:v3.17-1
 
 LABEL MAINTAINER="Zero<tobewhatwewant@gmail.com>"
 
-LABEL org.opencontainers.image.source="https://github.com/go-zoox/alioss-cdn"
+LABEL org.opencontainers.image.source="https://github.com/go-idp/oss"
 
 ARG VERSION=latest
 

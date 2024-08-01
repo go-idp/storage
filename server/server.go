@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"io"
@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
+	"github.com/go-idp/oss/config"
 	"github.com/go-zoox/core-utils/fmt"
 	"github.com/go-zoox/core-utils/regexp"
 	"github.com/go-zoox/fs"
@@ -14,17 +15,7 @@ import (
 	"github.com/go-zoox/zoox/defaults"
 )
 
-type Config struct {
-	Port            int
-	AccessKeyID     string
-	AccessKeySecret string
-	Bucket          string
-	Endpoint        string
-	//
-	Directory string
-}
-
-func server(cfg *Config) error {
+func Run(cfg *config.Config) error {
 	// remove prefix slash
 	if matched := regexp.Match("^/", cfg.Directory); matched {
 		cfg.Directory = cfg.Directory[1:]
