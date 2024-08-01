@@ -32,4 +32,4 @@ COPY --from=builder /build/storage /bin
 
 RUN storage --version
 
-CMD storage server
+CMD storage
