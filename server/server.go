@@ -43,6 +43,19 @@ func Run(cfg *config.Config) error {
 
 	app := defaults.Default()
 
+	app.SetBanner(fmt.Sprintf(`
+  _____       _______  ___    ______                        
+ / ___/__    /  _/ _ \/ _ \  / __/ /____  _______ ____ ____ 
+/ (_ / _ \  _/ // // / ___/ _\ \/ __/ _ \/ __/ _ '/ _ '/ -_)
+\___/\___/ /___/____/_/    /___/\__/\___/_/  \_,_/\_, /\__/ 
+                                                 /___/       %s
+
+Storage Service for Go IDP
+
+____________________________________O/_______
+                                    O\
+`, storage.Version))
+
 	client, err := oss.New(
 		cfg.OSSEndpoint,
 		cfg.OSSAccessKeyID,
